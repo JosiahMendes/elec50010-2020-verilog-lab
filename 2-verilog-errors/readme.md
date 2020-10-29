@@ -23,11 +23,16 @@ Fix the test-bench.
 Discussion:
 
 - What is the underlying error?
-    Underlying error was that in the testbench, the inputs and outputs were incorrectly declared as being 9 bits wide. 
+
+    *Underlying error was that in the testbench, the inputs and outputs were incorrectly declared as being 9 bits wide.* 
+
 - Does the compiler warn you about the problem?
-    The compiler warned of this problem by saying that "Port 1 (x) of add_one expects 8 bits, got 9." And similar for port y.
+
+    *The compiler warned of this problem by saying that "Port 1 (x) of add_one expects 8 bits, got 9." And similar for port y.*
+
 - How will you avoid this type of error?
-    Ensure that the width of the inputs and outputs declared in the testbench match the module tested.
+
+    *Ensure that the width of the inputs and outputs declared in the testbench match the module tested.*
 
 
 v2 - 1-bit Flip-Flop
@@ -41,13 +46,20 @@ Fix the flip-flop.
 Discussion:
 
 - What does the waveform look like? Can you explain it?
-    The flipflop was changing at both postive clk edges and negative clock edges. 
+
+    *The flipflop was changing at both postive clk edges and negative clock edges.*
+
 - What is the underlying error?
-    ff assignment was defined as `always@(clock)` which meant it was triggered whenever the clock changed. To fix this, it should be `always@(posedge clock)` 
+
+    *ff assignment was defined as `always@(clock)` which meant it was triggered whenever the clock changed. To fix this, it should be `always@(posedge clock)` *
+
 - Does the compiler try to help you avoid this type of error?
-    The compiler does not try to help avoid this error as there is no syntax error, this is purely detected through the use of assert statements in the testbench. 
+
+    *The compiler does not try to help avoid this error as there is no syntax error, this is purely detected through the use of assert statements in the testbench.* 
+
 - What happens if you use `always_ff` in the original (broken) FF, rather than `always`?
-    When using `always_ff`, the compiler helps to detect the error, by detailing that "Synthesis requires the sensitivity list of an always_ff process to only be edge sensitive. clk is missing a pos/negedge." Thus adding the `posedge` will fix this problem as well.
+
+    *When using `always_ff`, the compiler helps to detect the error, by detailing that "Synthesis requires the sensitivity list of an always_ff process to only be edge sensitive. clk is missing a pos/negedge." Thus adding the `posedge` will fix this problem as well.*
 
 v3 - 1-bit Flip-Flop with clock-enable
 -------------------------------------
@@ -59,13 +71,29 @@ it does not work, but the test-bench itself is also not correct.
 
 Fix the flip-flop and the test-bench.
 
+
 Discussion:
 
 - Did the compiler suggest there is a problem?
+
+  *Compiler does not suggest that there is a probelm, have to run simulation to find problems.* 
+
+  FF Problems : Wasn't being triggered by positive edge of clock, was also changed when the input changed. 
+
+  Testbench Problems: Assumed that output should have changed when the clock hadn't got to the next rising edge yet. 
+
 - The test-bench is correct that the FF does not work, but still contains an error. How can you
     detect errors in test-benches?
+
+    *Detecting errors in the testbench is more difficult, and you need to know the expected behaviour of the module and compare witht the actual simulation output to detect if errors in the simulation are due to the testbench or actual errors.*
+
 - Both the FF and bench-mark use examples of poor style. Try to recognise them, and the errors they might cause.
+
+    *As the ff is a sequential logic device, it should use the `always_ff` block and use the "non-blocking assignment method `<=` . This ensures that the flipflop only changes on the clock edge. The testbench does not instantiate the `ff` module in the best way, it assumes the order of the inputs and outputs, it would be better if the inouts and outputs were explictily connected.*
+
 - The test-bench never modifies `clock_enable`. Why might that be a problem?
+
+    *The ff is not tested for when the clock is disabled, so there may be problems in the logic.*
 
 v4 - Or gate
 ------------
