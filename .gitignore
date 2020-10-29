@@ -5,3 +5,4 @@ obj_dir
 2-verilog-errors/v1/add_one_tb
 2-verilog-errors/v2/ff_tb
 2-verilog-errors/v3/ff_tb
+2-verilog-errors/v4/or_tb

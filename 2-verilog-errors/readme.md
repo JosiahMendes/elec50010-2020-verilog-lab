@@ -90,7 +90,7 @@ Discussion:
 - Both the FF and bench-mark use examples of poor style. Try to recognise them, and the errors they might cause.
 
     *As the ff is a sequential logic device, it should use the `always_ff` block and use the "non-blocking assignment method `<=` . This ensures that the flipflop only changes on the clock edge. The testbench does not instantiate the `ff` module in the best way, it assumes the order of the inputs and outputs, it would be better if the inouts and outputs were explictily connected.*
-
+Sequential logic can use a number of forms, but you are encouraged to use the always_ff block, which should only contain "non-blocking" assignments using the <= assignment operator.
 - The test-bench never modifies `clock_enable`. Why might that be a problem?
 
     *The ff is not tested for when the clock is disabled, so there may be problems in the logic.*
@@ -106,10 +106,22 @@ Fix the or gate.
 Discussion:
 
 - Did the compiler suggest there is a problem?
+
+    *No*
+
 - Does replacing `always` with `always_comb` change the way the compiler views it?
+
+    *It is specifically for combinatorial logic, so if there are assignments within the block that are non combinatorial, the compiler may throw up an error*
+
 - Why is the module called `or_gate` rather than just `or`?
+
+    *`or` is a verilog operator name*
+
 - How many different ways or styles of specifying the or gates logic can you come up with?
+
 - Which style do you think is clearest and/or least error prone?
+
+    `r = a|b`
 
 v5 - 4-bit combinatorial adder
 ------------------------------
