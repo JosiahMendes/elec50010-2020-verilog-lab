@@ -6,3 +6,4 @@ obj_dir
 2-verilog-errors/v2/ff_tb
 2-verilog-errors/v3/ff_tb
 2-verilog-errors/v4/or_tb
+2-verilog-errors/v7/add_sub_logic_tb
