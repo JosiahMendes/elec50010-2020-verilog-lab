@@ -12,16 +12,16 @@ module ff_tb();
         #5;
 
         /* rising edge */
-        clk = 1;
+        clk = 1; //t = 5
         #1;
-        assert(q == 1);
+        assert(q == 1); //t =6
         #1;
-        d=0;          /* Change the register input to 0. */
+        d=0;          /* Change the register input to 0.      t = 7*/
         #1;
-        assert(q==1); /* Should still be 1 until rising edge. */
-        d=0;          /* Change the register input to 0. */
+        assert(q==1); /* Should still be 1 until rising edge. t = 8*/
+        d=0;          /* Change the register input to 0.      t = 8*/
         #1;
-        assert(q==1); /* Should still be 1 until rising edge. */
+        assert(q==1); /* Should still be 1 until rising edge.  t = 9*/
 
         /* falling edge */
         clk = 0;

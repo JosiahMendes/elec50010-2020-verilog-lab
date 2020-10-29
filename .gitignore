@@ -3,3 +3,4 @@ a.out
 obj_dir
 0-tools/and_not_testbench
 2-verilog-errors/v1/add_one_tb
+2-verilog-errors/v2/ff_tb

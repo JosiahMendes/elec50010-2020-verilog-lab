@@ -41,9 +41,13 @@ Fix the flip-flop.
 Discussion:
 
 - What does the waveform look like? Can you explain it?
+    The flipflop was changing at both postive clk edges and negative clock edges. 
 - What is the underlying error?
+    ff assignment was defined as `always@(clock)` which meant it was triggered whenever the clock changed. To fix this, it should be `always@(posedge clock)` 
 - Does the compiler try to help you avoid this type of error?
+    The compiler does not try to help avoid this error as there is no syntax error, this is purely detected through the use of assert statements in the testbench. 
 - What happens if you use `always_ff` in the original (broken) FF, rather than `always`?
+    When using `always_ff`, the compiler helps to detect the error, by detailing that "Synthesis requires the sensitivity list of an always_ff process to only be edge sensitive. clk is missing a pos/negedge." Thus adding the `posedge` will fix this problem as well.
 
 v3 - 1-bit Flip-Flop with clock-enable
 -------------------------------------
