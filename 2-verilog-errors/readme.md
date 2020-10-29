@@ -135,8 +135,16 @@ Fix the 4-bit adder.
 Discussion:
 
 - The adder is wrong due to an incorrect assumption about the semantics of buses (multi-wire signals) in Verilog. What is it?
+
+*The carry logic for the ripple adder was wrong. The carry in of the LSB adder should correspond to the cin of the 4bit adder and the carry out should correspond to the 2nd bit in the carry wire.*
+
 - Assume you had to build a module `add32.v` which adds 32-bit values, but still had to rely on the `fadd` primitive. How might you do it?
+
+*Using variables and a for loop to assign the numbers to each of the inputs and outputs of the `fadd` primitive*
+
 - The test-bench for `add4.v` correctly identifies this problem through an exhaustive testing strategy. Would this strategy still work for `add32.v`?
+
+*Yes it would*
 
 
 v6 - 16-bit Hamming weight
