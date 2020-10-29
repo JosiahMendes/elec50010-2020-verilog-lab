@@ -23,8 +23,11 @@ Fix the test-bench.
 Discussion:
 
 - What is the underlying error?
+    Underlying error was that in the testbench, the inputs and outputs were incorrectly declared as being 9 bits wide. 
 - Does the compiler warn you about the problem?
+    The compiler warned of this problem by saying that "Port 1 (x) of add_one expects 8 bits, got 9." And similar for port y.
 - How will you avoid this type of error?
+    Ensure that the width of the inputs and outputs declared in the testbench match the module tested.
 
 
 v2 - 1-bit Flip-Flop
