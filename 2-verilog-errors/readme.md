@@ -160,12 +160,28 @@ circuit _and_ the test-bench contain errors.
 
 Fix the test-bench, then fix the circuit.
 
+*TestBench Error - Repeat was one less than necessary, had only considered largest number 16 bit binary could hold not the number of combinations which is 1 extra. The other error in the testbench was the count_ref bus size was wrong thus unable to display 16. Hamming 16 Error - Output was declared orrectly, but count_sum was declared incorrectly as [3:0] instead of [4:0] hence it could not return 16.*
+
 Discussion:
 - Both the test-bench and circuit were written by the same person. Why might this cause this type of error?
+
+*When the test-bench and the circuit are written by the same person, blind to errors and unable to see them. May also be caused by not having the right expectation, so the 'wrong' program is seen as being right.* 
+
 - The circuit was written before the test-bench. Why might this cause this type of error?
+
+*It may cause this error because the testbench may be written to match the outputs of the code.*
+
 - The failure case is unlikely because it is rare. How might the test-bench be written to look for these cases?
+
+*Instead of using specific numbers - use `2^n` to ensure that the combinations are tested.*
+
 - What is the advantage of this hierarchical composition style?
+
+*Reduction in complexity - layers of abstraction.*
+
 - How might you adapt the test-bench and test approach for a 64-bit hamming circuit?
+
+*Build a 32 bit hamming from the 16 bit, and build a 64 bit hamming from 32 bits. Update testbench bus sizes and repeat numbers.*
 
 v7 - Composite ALU
 ------------------
@@ -179,9 +195,12 @@ Fix the test-bench.
 
 Discussion:
 
-- In this case the circuit and test-bench were developed independently, and it was initially unclear which one was correct. What
-  could (or should) help resolve such situations?
-- The case `op==3` in `add_sub_logic` has some edge-cases. What types of inputs (values of `a` and `b`) would be worth
-    testing?
-- The total set of possible inputs is very large. How might you create an "interesting" set of inputs that
-    might trigger failure edge cases for all ops?
+- In this case the circuit and test-bench were developed independently, and it was initially unclear which one was correct. What could (or should) help resolve such situations?
+
+*Working closer together, to ensure that the definition of the operations is the same*
+
+- The case `op==3` in `add_sub_logic` has some edge-cases. What types of inputs (values of `a` and `b`) would be worth testing?
+
+*When a and b are equal*
+
+- The total set of possible inputs is very large. How might you create an "interesting" set of inputs that might trigger failure edge cases for all ops?
