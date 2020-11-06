@@ -46,7 +46,7 @@ module CPU_MU0_delay0(
     logic[11:0] pc, pc_next;
     logic[15:0] acc;
 
-    logic[16:0] instr;
+    logic[15:0] instr;
     opcode_t instr_opcode;
     logic[11:0] instr_constant;    
 
@@ -106,7 +106,11 @@ module CPU_MU0_delay0(
                     pc <= pc_increment;
                     state <= FETCH_INSTR;
                 end
-                OPCODE_STO: begin
+                OPCODE_STO: beginCompiler does not suggest that there is a probelm, have to run simulation to find problems.
+
+FF Problems : Wasn't being triggered by positive edge of clock, was also changed when the input changed.
+
+Testbench Problems: Assumed that output should have changed when the clock hadn't got to the next rising edge yet.
                     pc <= pc_increment;
                     state <= FETCH_INSTR;
                 end

@@ -48,7 +48,7 @@ module CPU_MU0_delay1(
     logic[11:0] pc, pc_next;
     logic[15:0] acc;
 
-    logic[16:0] instr;
+    logic[15:0] instr;
     opcode_t instr_opcode;
     logic[11:0] instr_constant;    
 
