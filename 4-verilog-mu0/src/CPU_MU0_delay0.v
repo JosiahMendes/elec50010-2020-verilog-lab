@@ -106,11 +106,7 @@ module CPU_MU0_delay0(
                     pc <= pc_increment;
                     state <= FETCH_INSTR;
                 end
-                OPCODE_STO: beginCompiler does not suggest that there is a probelm, have to run simulation to find problems.
-
-FF Problems : Wasn't being triggered by positive edge of clock, was also changed when the input changed.
-
-Testbench Problems: Assumed that output should have changed when the clock hadn't got to the next rising edge yet.
+                OPCODE_STO: begin
                     pc <= pc_increment;
                     state <= FETCH_INSTR;
                 end
