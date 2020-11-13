@@ -84,7 +84,7 @@ module CPU_MU0_core(
                     pc <= instr_constant;
                 end
                 OPCODE_JGE: begin
-                    if (acc[15] == 0) begin
+                    if ($signed(acc)>0) begin
                         pc <= instr_constant;
                     end
                     else begin

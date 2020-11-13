@@ -1,0 +1,8 @@
+   LDA FIVE
+Z: SUB ONE
+   OUT
+   JGE Z
+   STP
+FIVE: 5
+ONE: 1
+NEG_ONE: -1
