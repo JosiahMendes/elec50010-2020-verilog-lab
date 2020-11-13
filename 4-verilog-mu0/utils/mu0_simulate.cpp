@@ -37,7 +37,7 @@ int16_t mu0_simulate(uint16_t *memory)
             PC=S;
 
         }else if(opcode==5){ // JGE
-            if(ACC>=0){
+            if(ACC>0){
                 PC=S;
             }else{
                 PC=PC+1;

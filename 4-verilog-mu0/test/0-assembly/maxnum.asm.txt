@@ -1,0 +1,8 @@
+   LDA MAX
+   OUT
+Z: ADD 1
+   OUT
+   JGE Z
+   STP
+MAX: 32767
+NEG_ONE: -1

@@ -135,8 +135,8 @@ module CPU_MU0_delay1(
                     state <= FETCH_INSTR_ADDR;
                 end
                 OPCODE_JGE: begin
-                    if (acc > 0) begin
-                        pc <= acc;
+                    if (acc[15] == 0) begin
+                        pc <= instr_constant;
                     end
                     else begin
                         pc <= pc_increment;
